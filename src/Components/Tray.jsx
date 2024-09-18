@@ -4,7 +4,7 @@ import SettingsTray from "./SettingsTray";
 import InviteTray from "./InviteTray";
 import SupportersTray from "./SupportersTray";
 import GiftTray from "./GiftTray";
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
 const Tray = (props) => {
   const [content, setContent] = useState("settings");
@@ -14,6 +14,15 @@ const Tray = (props) => {
     supporters: <SupportersTray setContent={setContent} />,
     gift: <GiftTray setContent={setContent} />,
   };
+
+  const dragY = useMotionValue(0);
+
+  const trayDragClose = () => {
+    if (dragY.get() > 100) {
+      props.setIsTrayOpen(false);
+    }
+  };
+
   return (
     <>
       <motion.div
@@ -24,14 +33,27 @@ const Tray = (props) => {
         exit={{ opacity: 0 }}
       ></motion.div>
       <motion.div
-        className="w-380px absolute inset-x-0 bottom-4 z-20 mx-auto overflow-hidden bg-white px-6 pb-6 pt-5"
-        style={{ borderRadius: 32 }}
+        className="absolute inset-x-0 bottom-4 z-20 mx-auto max-w-[380px] overflow-hidden bg-white px-6 pb-6 pt-5 active:cursor-grabbing"
+        onContextMenuCapture={(e) => e.preventDefault()}
+        onDragEnd={trayDragClose}
+        style={{ borderRadius: 32, y: dragY }}
         initial={{ y: 330 }}
         animate={{ y: 0 }}
+        drag="y"
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={{ top: 0.15, bottom: 0.65 }}
         transition={{ type: "spring", bounce: 0.2, duration: 0.35 }}
-        exit={{ y: 600 }}
+        exit={{ y: 650 }}
         layout
       >
+        <div className="flex w-full items-center justify-center">
+          <div
+            className="h-[5px] w-[50px] cursor-grab bg-gray-300 active:cursor-grabbing"
+            layout
+            id="drag-bar"
+            style={{ borderRadius: 100 }}
+          ></div>
+        </div>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

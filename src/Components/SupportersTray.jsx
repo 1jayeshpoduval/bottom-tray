@@ -5,9 +5,6 @@ const SupportersTray = (props) => {
   return (
     <>
       <div className="flex flex-col gap-6">
-        <div className="flex w-full items-center justify-center">
-          <div className="w-50px h-5px rounded-full bg-gray-300"></div>
-        </div>
         <div className="flex w-full flex-col gap-3">
           <svg
             width="36"
