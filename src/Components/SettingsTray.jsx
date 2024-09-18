@@ -5,9 +5,6 @@ const SettingsTray = (props) => {
   return (
     <>
       <div className="flex flex-col gap-6">
-        <div className="flex w-full items-center justify-center">
-          <div className="w-50px h-5px rounded-full bg-gray-300"></div>
-        </div>
         <span className="text-xl font-semibold">Settings</span>
         <div className="flex w-full flex-col gap-3 text-lg">
           <motion.button

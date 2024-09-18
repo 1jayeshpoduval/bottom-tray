@@ -11,10 +11,10 @@ function App() {
   return (
     <>
       <main>
-        <section className="relative h-screen overflow-hidden bg-midnight-900">
-          <div className="mx-auto flex h-full w-90% max-w-screen-2xl flex-col items-center justify-center overflow-hidden">
+        <section className="relative h-screen overflow-hidden bg-midnight-700">
+          <div className="mx-auto flex h-full w-[90%] max-w-screen-2xl flex-col items-center justify-center overflow-hidden">
             <button
-              className="hover:bg-midnight-700 flex flex-col rounded-lg border border-midnight-900 bg-midnight-850 px-4 py-2 font-medium text-white transition-colors"
+              className="flex flex-col rounded-lg border border-midnight-900 bg-midnight-850 px-4 py-2 font-medium text-white transition-colors hover:bg-midnight-700"
               onClick={trayOpen}
             >
               <span>Open tray</span>
